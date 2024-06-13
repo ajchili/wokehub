@@ -1,12 +1,15 @@
 {
   "name": "wokehub",
   "version": "69.420.1337",
+  "type": "module",
   "scripts": {
     "start": "vite"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@tanstack/router-devtools": "^1.36.3",
+    "@tanstack/router-vite-plugin": "^1.37.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -14,6 +17,8 @@
     "vite": "^5.2.13"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.45.0",
+    "@tanstack/react-router": "^1.36.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }
