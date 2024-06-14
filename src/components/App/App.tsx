@@ -1,9 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useSearch } from "@tanstack/react-router";
 
 import { Header } from "../Header/Header.js";
 import { Search } from "../Search/Search.js";
 import { UserInfo } from "../UserInfo/UserInfo.js";
-import { useSearch } from "@tanstack/react-router";
 
 const queryClient = new QueryClient();
 

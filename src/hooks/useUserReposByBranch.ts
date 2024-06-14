@@ -19,7 +19,7 @@ function reduceRepoPages(pages: any[] = []): Record<string, string[]> {
   return data;
 }
 
-export const useUserReposByBranch = (username?: string) => {
+export const useUserReposByBranch = (username?: string): [Record<string, string[]>, boolean] => {
   const query = useInfiniteQuery({
     queryKey: ["repos", username],
     queryFn: async ({ pageParam, queryKey }) => {

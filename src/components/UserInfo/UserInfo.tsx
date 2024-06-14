@@ -1,16 +1,16 @@
-import { useUserReposByBranch } from "../../hooks/useUserReposByBranch.js";
+import { useUserWokeness } from "../../hooks/useUserWokeness.js";
 
 interface UserInfoProps {
   username?: string;
 }
 
 export const UserInfo = ({ username }: UserInfoProps): JSX.Element => {
-  const [userReposByBranch, loading] = useUserReposByBranch(username);
+  const [{ susScore }, loading] = useUserWokeness(username);
 
   if (loading) {
     // TODO: Better loading
     return <h1>LOADING</h1>;
   }
 
-  return <div>{JSON.stringify(userReposByBranch)}</div>;
+  return <div>{susScore}</div>;
 };
