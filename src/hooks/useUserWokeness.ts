@@ -10,12 +10,14 @@ interface State {
   };
   wokeness: number;
   susScore: number;
+  isWoke: boolean;
 }
 
 const initialState: State = {
   details: { susBranches: 0, totalBranches: 0, wokeBranches: 0 },
   wokeness: 0,
   susScore: 0,
+  isWoke: false,
 };
 
 type Action = ProcessDataAction;
@@ -54,6 +56,7 @@ const reducer = (state: State, action: Action) => {
       state.susScore = parseFloat(
         (details.susBranches / details.totalBranches).toFixed(2)
       );
+      state.isWoke = state.wokeness >= 0.5 || state.susScore < 0.3;
       break;
   }
 
