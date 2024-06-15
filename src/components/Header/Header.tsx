@@ -1,3 +1,4 @@
+"use client";
 export const Header = (): JSX.Element => {
   return (
     <div

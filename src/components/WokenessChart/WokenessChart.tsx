@@ -1,3 +1,4 @@
+"use client";
 import { WokenessChartBar } from "./WokenessChartBar";
 
 interface WokenessChartProps {

@@ -1,3 +1,4 @@
+"use client";
 interface WokenessChartBarProps {
   color: string;
   size: number;
