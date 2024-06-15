@@ -1,31 +1,37 @@
 import { Repos } from "./repos";
 import { Octokit } from "octokit";
 
-export interface RepoListReponse {
-  user: {
-    login: string;
-    repositories: {
-      nodes: {
-        url: string;
+import { GITHUB_USER } from "@/queries/github-user";
+import { GITHUB_ORG } from "@/queries/github-org";
+
+export type Repo = {
+  login: string;
+  repositories: {
+    nodes: {
+      url: string;
+      name: string;
+      updatedAt: string;
+      createdAt: string;
+      defaultBranchRef: {
         name: string;
-        updatedAt: string;
-        createdAt: string;
-        defaultBranchRef: {
-          name: string;
-        };
-      }[];
-      pageInfo: {
-        hasNextPage: boolean;
-        endCursor: string;
       };
+    }[];
+    pageInfo: {
+      hasNextPage: boolean;
+      endCursor: string;
     };
   };
+};
+
+export interface RepoListReponse {
+  user: Repo;
+  organization: Repo;
 }
 
-function reduceRepoPages(input: RepoListReponse): Record<string, string[]> {
+function reduceRepoPages(repoData: Repo): Record<string, string[]> {
   const data: Record<string, string[]> = {};
 
-  for (const repo of input.user.repositories.nodes) {
+  for (const repo of repoData.repositories.nodes) {
     const { name, defaultBranchRef } = repo;
     const branchName = defaultBranchRef?.name;
 
@@ -52,34 +58,28 @@ export default async function Home({
     auth: process.env.GITHUB_PAT,
   });
 
-  // NOTE: one thing that sucks about this is it not cacheable easily
-  const repoInfo = (await octokit.graphql.paginate(
-    `query GetUsernameAndRepos($username: String!, $num: Int = 100, $cursor: String) {
-        user(login: $username) {
-          login,
-          repositories(first: $num, after: $cursor, isFork: false) {
-            nodes {
-              url,
-              name,
-              updatedAt,
-              createdAt,
-              defaultBranchRef {
-                name
-              }
-            }
-            pageInfo {
-              hasNextPage
-              endCursor
-            }  
-          }
-        }
-      }`,
-    {
-      username,
-    },
-  )) as RepoListReponse;
+  let repoInfo: Repo;
 
-  // convert back to the old data shape?
+  // TODO: cache this shit
+  try {
+    console.log(`fetching user ${username}...`)
+    const userReponse = (await octokit.graphql.paginate(GITHUB_USER, {
+      username,
+    })) as RepoListReponse;
+
+    repoInfo = userReponse.user;
+  } catch (error: any) {
+
+    console.log(`fetching org ${username}...`)
+
+    // TODO: error handle this
+    const orgResponse = (await octokit.graphql.paginate(GITHUB_ORG, {
+      username,
+    })) as RepoListReponse;
+
+    repoInfo = orgResponse.organization;
+  }
+
   const newRepoInfo = reduceRepoPages(repoInfo);
 
   return <Repos username={username} data={newRepoInfo} />;
