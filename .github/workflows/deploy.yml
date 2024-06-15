@@ -1,31 +1,22 @@
+# https://vitejs.dev/guide/static-deploy#github-pages
 name: deploy
 on:
   push:
     branches:
       - mainline
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install
+          cache: "npm"
+      - run: npm ci
       - run: npm run build
+      - uses: actions/configure-pages@v4
       - uses: actions/upload-artifact@v4
         with:
-          name: github-pages
           path: ./dist
-
-  deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/deploy-pages@v4
