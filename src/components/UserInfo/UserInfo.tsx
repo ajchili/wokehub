@@ -1,6 +1,7 @@
-import { WokenessChart } from "../WokenessChart/WokenessChart.js";
-import { useUserReposByBranch } from "../../hooks/useUserReposByBranch.js";
-import { SUS_BRANCH_NAMES, WOKE_BRANCH_NAMES } from "../../contants/github.js";
+"use client";
+import { WokenessChart } from "../WokenessChart/WokenessChart";
+import { useUserReposByBranch } from "../../hooks/useUserReposByBranch";
+import { SUS_BRANCH_NAMES, WOKE_BRANCH_NAMES } from "../../contants/github";
 
 interface UserInfoProps {
   username?: string;
@@ -11,7 +12,7 @@ function processDetailsFromData(data: Record<string, string[]>) {
   return {
     totalBranches: entries.reduce(
       (repoSum, [_keys, repos]) => (repoSum += repos.length),
-      0
+      0,
     ),
     susBranches: entries
       .filter(([branchName]) => SUS_BRANCH_NAMES.includes(branchName))

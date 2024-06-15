@@ -1,4 +1,4 @@
-import { WokenessChartBar } from "./WokenessChartBar.js";
+import { WokenessChartBar } from "./WokenessChartBar";
 
 interface WokenessChartProps {
   details: {
