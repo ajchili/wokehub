@@ -1,3 +1,4 @@
+import { WokenessChart } from "@/components/WokenessChart/WokenessChart";
 import { SUS_BRANCH_NAMES, WOKE_BRANCH_NAMES } from "@/contants/github";
 
 function processDetailsFromData(data: Record<string, string[]>) {
@@ -5,7 +6,7 @@ function processDetailsFromData(data: Record<string, string[]>) {
   return {
     totalBranches: entries.reduce(
       (repoSum, [_keys, repos]) => (repoSum += repos.length),
-      0
+      0,
     ),
     susBranches: entries
       .filter(([branchName]) => SUS_BRANCH_NAMES.includes(branchName))
@@ -24,21 +25,22 @@ export const Repos = ({
   username: string;
   data: Record<string, string[]>;
 }) => {
-
-
   const { wokeBranches, totalBranches, susBranches } =
     processDetailsFromData(data);
   const wokeness = parseFloat((wokeBranches / totalBranches).toFixed(2));
   const susScore = parseFloat((susBranches / totalBranches).toFixed(2));
   const isWoke = wokeness >= 0.5 || susScore < 0.3;
 
-  return <div>
-    <h2>repos for {username}</h2>
-    <pre>{JSON.stringify({
-      wokeness,
-      susScore,
-      isWoke,
-      repos: data
-    }, null, 2)}</pre>
-  </div>
+  const details = {
+    susBranches,
+    totalBranches,
+    wokeBranches,
+  };
+
+  return (
+    <div className="flex flex-col items-center">
+      <h1 className="flex text-4xl font-bold">repos for {username}</h1>
+      <WokenessChart details={details} />
+    </div>
+  );
 };

@@ -1,7 +1,7 @@
 "use client";
 import { WokenessChartBar } from "./WokenessChartBar";
 
-interface WokenessChartProps {
+export interface WokenessChartProps {
   details: {
     susBranches: number;
     totalBranches: number;

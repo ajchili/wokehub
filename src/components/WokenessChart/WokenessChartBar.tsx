@@ -14,17 +14,16 @@ export const WokenessChartBar = ({
 
   return (
     <div
+      className="flex flex-col justify-end"
       style={{
-        width: "20%",
-        height: "100%",
-        alignContent: "end",
+        height: "100vh",
       }}
     >
       <p style={{ textAlign: "center" }}>{label}</p>
       <div
         style={{
           width: "100%",
-          height: `${fixedSize * 100}%`,
+          height: `${10 + fixedSize * 90}%`,
           background: color,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
