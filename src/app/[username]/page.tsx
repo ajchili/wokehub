@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { Repos } from "./repos";
 import { Octokit } from "octokit";
 
@@ -11,6 +10,7 @@ export default async function Home({
     auth: process.env.GITHUB_PAT,
   });
 
+  // NOTE: one thing that sucks about this is it not cacheable easily
   const repoInfo = await octokit.graphql.paginate(
     `query GetUsernameAndRepos($username: String!, $num: Int = 100, $cursor: String) {
         user(login: $username) {
@@ -37,9 +37,5 @@ export default async function Home({
     },
   );
 
-  return (
-    <Suspense fallback={<div>loading...</div>}>
-      <Repos username={username} data={repoInfo} />
-    </Suspense>
-  );
+  return <Repos username={username} data={repoInfo} />;
 }
