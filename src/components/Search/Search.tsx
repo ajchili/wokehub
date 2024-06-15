@@ -22,7 +22,7 @@ export const Search = (): JSX.Element => {
         >
           is
           <input
-            className="border-b-2 p-2 border-black bg-gray-700"
+            className="border-b-2 p-2 border-black bg-gray-800"
             required
             placeholder="username"
             autoComplete="off"
@@ -34,7 +34,7 @@ export const Search = (): JSX.Element => {
           />
           woke?
         </div>
-        <button className="bg-blue-800 rounded-2xl p-4 text-4xl">lock in</button>
+        <button className="bg-blue-800 font-bold rounded-2xl p-4 text-4xl">🔒 lock in</button>
       </form>
     </div>
   );
