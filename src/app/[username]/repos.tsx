@@ -39,7 +39,8 @@ export const Repos = ({
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="flex text-4xl font-bold">repos for {username}</h1>
+      <h1 className="flex text-4xl font-bold">Is {username} woke?</h1>
+      <h2 className="flex text-2xl">{isWoke ? "yes" : "no"}</h2>
       <WokenessChart details={details} />
     </div>
   );
