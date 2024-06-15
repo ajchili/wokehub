@@ -3,7 +3,9 @@
   "version": "69.420.1337",
   "type": "module",
   "scripts": {
-    "start": "vite"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "author": "Kirin Patel <contact@kirinpatel.com>",
   "license": "MIT",
