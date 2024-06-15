@@ -29,6 +29,10 @@ function reduceRepoPages(input: RepoListReponse): Record<string, string[]> {
     const { name, defaultBranchRef } = repo;
     const branchName = defaultBranchRef?.name;
 
+    if (!branchName) {
+      continue;
+    }
+
     if (!data[branchName]) {
       data[branchName] = [];
     }
