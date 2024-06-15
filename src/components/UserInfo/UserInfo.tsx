@@ -23,6 +23,10 @@ function processDetailsFromData(data: Record<string, string[]>) {
 }
 
 export const UserInfo = ({ username }: UserInfoProps): JSX.Element => {
+  if (username === undefined) {
+    return <></>;
+  }
+
   const [details, loading] = useUserReposByBranch(username);
 
   if (loading) {
