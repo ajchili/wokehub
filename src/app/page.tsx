@@ -18,8 +18,7 @@ export default function Home() {
         <ClientProviders>
           <>
             <Header />
-            <Search username={username} />
-            <UserInfo username={username} />
+            <Search />
           </>
         </ClientProviders>
       </div>
