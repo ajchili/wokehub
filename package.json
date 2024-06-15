@@ -1,6 +1,6 @@
 {
   "name": "wokehub",
-  "version": "69.420.1337",
+  "version": "69.420.1337-canary.80085",
   "type": "module",
   "author": "Kirin Patel <contact@kirinpatel.com>",
   "scripts": {
