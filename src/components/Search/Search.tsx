@@ -11,22 +11,18 @@ export const Search = (): JSX.Element => {
 
   return (
     <div
-      style={{
-        flex: 1,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      className="flex justify-center items-center pt-20"
     >
       <form
-        style={{ display: "flex", gap: 10, flexDirection: "column" }}
+        className="flex flex-col gap-10"
         action={() => redirectToUserProfile(username)}
       >
-        <div style={{ display: "flex", gap: 10 }}>
+        <div 
+          className="flex justify-center items-center gap-4"
+        >
           is
           <input
-            style={{ border: "none", borderBottom: "1px solid black" }}
-            className="text-black"
+            className="border-b-2 p-2 border-black bg-gray-700"
             required
             placeholder="username"
             autoComplete="off"
@@ -35,10 +31,10 @@ export const Search = (): JSX.Element => {
             data-1p-ignore
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-          ></input>
+          />
           woke?
         </div>
-        <button>lock in</button>
+        <button className="bg-blue-800 rounded-2xl p-4 text-4xl">lock in</button>
       </form>
     </div>
   );
