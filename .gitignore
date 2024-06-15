@@ -2,3 +2,4 @@ node_modules
 *.gen.ts
 dist
 .next/
+.env
