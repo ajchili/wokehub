@@ -1,7 +1,7 @@
 import { Repos } from "./repos";
 import { Octokit } from "octokit";
 
-interface RepoListReponse {
+export interface RepoListReponse {
   user: {
     login: string;
     repositories: {
