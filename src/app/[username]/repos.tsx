@@ -6,7 +6,7 @@ function processDetailsFromData(data: Record<string, string[]>) {
   return {
     totalBranches: entries.reduce(
       (repoSum, [_keys, repos]) => (repoSum += repos.length),
-      0,
+      0
     ),
     susBranches: entries
       .filter(([branchName]) => SUS_BRANCH_NAMES.includes(branchName))
@@ -38,7 +38,7 @@ export const Repos = ({
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-dvh">
       <h1 className="flex text-4xl font-bold">Is {username} woke?</h1>
       <h2 className="flex text-2xl">{isWoke ? "yes" : "no"}</h2>
       <WokenessChart details={details} />

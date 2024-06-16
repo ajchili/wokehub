@@ -14,16 +14,7 @@ export const WokenessChart = ({ details }: WokenessChartProps): JSX.Element => {
     details.totalBranches - (details.susBranches + details.wokeBranches);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        alignItems: "end",
-        justifyContent: "center",
-        gap: 20,
-      }}
-    >
+    <div className="flex flex-1 items-end content-center gap-20">
       <WokenessChartBar
         color="#FF5742"
         size={details.susBranches / details.totalBranches}
