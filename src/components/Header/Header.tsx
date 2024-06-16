@@ -1,18 +1,12 @@
+"use client";
 export const Header = (): JSX.Element => {
   return (
     <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: 40,
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 10,
-      }}
+      className="flex flex-col items-center justify-center"
     >
-      <span>🫱🏿‍🫲🏻 wokehub</span>
+      <h1 className="text-7xl">🤝 wokehub</h1>
       <a href="https://github.com/ajchili/wokehub" target="_blank">
-        sauce
+        the raw sauce
       </a>
     </div>
   );
