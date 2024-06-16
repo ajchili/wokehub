@@ -13,7 +13,7 @@ export const WokenessChartBar = ({
   const fixedSize = parseFloat(size.toFixed(2));
 
   return (
-    <div className="flex flex-col h-dvh justify-end">
+    <div className="flex flex-col h-full justify-end">
       <p style={{ textAlign: "center" }}>{label}</p>
       <div
         style={{
