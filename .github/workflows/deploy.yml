@@ -1,29 +1,24 @@
-# https://vitejs.dev/guide/static-deploy#github-pages
-name: deploy
+name: dry-run
 on:
-  push:
+  pull_request:
     branches:
-      - mainline
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
+      - main
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
       - run: npm ci
       - run: npm run build
-      - uses: actions/configure-pages@v4
-      - uses: actions/upload-pages-artifact@v3
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          path: ./dist
-      - uses: actions/deploy-pages@v4
+          node-version: 20
+      - run: npm ci
+      - run: npm run lint
